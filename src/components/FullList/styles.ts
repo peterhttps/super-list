@@ -5,6 +5,7 @@ export const FullListWrapper = styled.div`
   margin: 0 auto;
   margin-top: 32px;
   width: 1200px;
+  align-items: flex-start;
 `;
 
 export const CategoriesContainer = styled.div`
