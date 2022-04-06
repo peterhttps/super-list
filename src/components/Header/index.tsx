@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import AuthModal from "components/AuthModal";
+
 import {
   AuthButton,
   HeaderInput,
@@ -10,6 +12,8 @@ import {
 } from "./styles";
 
 const Header: React.FC = () => {
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+
   return (
     <HeaderWrapper>
       <TitleLogo>Super List</TitleLogo>
@@ -19,7 +23,8 @@ const Header: React.FC = () => {
         </InputLogoContainer>
         <HeaderInput />
       </HeaderInputContainer>
-      <AuthButton>Entrar</AuthButton>
+      <AuthButton onClick={() => setOpenAuthModal(true)}>Entrar</AuthButton>
+      {openAuthModal && <AuthModal openModal={setOpenAuthModal} />}
     </HeaderWrapper>
   );
 };
