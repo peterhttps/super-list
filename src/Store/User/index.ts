@@ -1,5 +1,5 @@
-import IAccount from "interfaces/IAccount";
 import { Store } from "pullstate";
+import IAccount from "interfaces/IAccount";
 import { getFromStorage } from "utils/storage";
 
 interface IProps {

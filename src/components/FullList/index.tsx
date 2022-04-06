@@ -1,5 +1,6 @@
 import React from "react";
 import { userUsers } from "hooks";
+import { useNavigate } from "react-router-dom";
 import List from "components/List";
 
 import {
@@ -8,8 +9,13 @@ import {
   FullListWrapper,
 } from "./styles";
 
-const FullList: React.FC = () => {
+interface IProps {
+  isFavorites: boolean;
+}
+
+const FullList: React.FC<IProps> = ({ isFavorites }: IProps) => {
   const { isAuthenticated, currentUser } = userUsers();
+  const navigate = useNavigate();
 
   return (
     <FullListWrapper>
@@ -17,7 +23,9 @@ const FullList: React.FC = () => {
         {isAuthenticated && (
           <>
             <h1>Hello, {currentUser.name.split(" ")[0]}</h1>
-            <CategorieContainer>Favorites</CategorieContainer>
+            <CategorieContainer onClick={() => navigate("/favorites")}>
+              Favorites
+            </CategorieContainer>
           </>
         )}
         <h1>Categories</h1>
@@ -26,7 +34,7 @@ const FullList: React.FC = () => {
         <CategorieContainer>Clothes</CategorieContainer>
         <CategorieContainer>Foods</CategorieContainer>
       </CategoriesContainer>
-      <List isFavorites={false} />
+      <List isFavorites={isFavorites} />
     </FullListWrapper>
   );
 };

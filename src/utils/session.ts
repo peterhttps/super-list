@@ -1,10 +1,11 @@
 import IAccount from "interfaces/IAccount";
+import { setFavorites } from "store/favorites/actions";
 import {
   addUser,
   setCurrentUser,
   setIsAuthenticated,
 } from "store/user/actions";
-import { editFromStorage, getFromStorage } from "./storage";
+import { editFromStorage, getFromStorageArray, saveOnStorage } from "./storage";
 
 export const loginSession = (user: IAccount) => {
   setIsAuthenticated(true);
@@ -52,4 +53,9 @@ export const registerSession = (user: IAccount, accounts: IAccount[]) => {
     },
     accounts: newAccounts,
   });
+
+  const favorites = getFromStorageArray("@favorites");
+  favorites.push({ userEmail: user.email, favorites: [] });
+  saveOnStorage("@favorites", favorites);
+  setFavorites(favorites);
 };

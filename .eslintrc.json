@@ -24,6 +24,7 @@
         "prettier"
     ],
     "rules": {
+      "no-console": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "react/require-default-props": "off",
       "no-param-reassign": "off",

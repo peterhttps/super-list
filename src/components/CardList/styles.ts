@@ -21,8 +21,8 @@ export const CardImage = styled.img`
   margin-top: 16px;
 `;
 
-export const FavoriteButton = styled.button`
-  background: #2b6cb0;
+export const FavoriteButton = styled.button<{ removeOption?: boolean }>`
+  background: ${(props) => (props.removeOption ? "#B82C21" : "#2b6cb0")};
   width: 100%;
   color: white;
   border: none;
@@ -34,6 +34,6 @@ export const FavoriteButton = styled.button`
   height: auto;
 
   &:hover {
-    background: #1e4c7d;
+    background: ${(props) => (props.removeOption ? "#632122" : "#1e4c7d")};
   }
 `;
