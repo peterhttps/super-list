@@ -4,7 +4,7 @@ export const FullListWrapper = styled.div`
   display: flex;
   margin: 0 auto;
   margin-top: 32px;
-  max-width: 1200px;
+  width: 1200px;
 `;
 
 export const CategoriesContainer = styled.div`
@@ -31,10 +31,10 @@ export const CategorieContainer = styled.div<{ active?: boolean }>`
   color: ${(props) => (props.active ? "white" : "black")};
   padding: 16px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const ListContainer = styled.div`
-  background: red;
   width: 900px;
   height: 100vh;
 `;

@@ -1,9 +1,9 @@
+import List from "components/List";
 import React from "react";
 import {
   CategorieContainer,
   CategoriesContainer,
   FullListWrapper,
-  ListContainer,
 } from "./styles";
 
 const FullList: React.FC = () => {
@@ -16,7 +16,7 @@ const FullList: React.FC = () => {
         <CategorieContainer>Clothes</CategorieContainer>
         <CategorieContainer>Foods</CategorieContainer>
       </CategoriesContainer>
-      <ListContainer />
+      <List />
     </FullListWrapper>
   );
 };
