@@ -46,7 +46,8 @@ export const AuthButton = styled.button`
   border: none;
   color: black;
   font-weight: bold;
-  width: 72px;
+  padding: 0 8px;
   height: 32px;
   border-radius: 10px;
+  cursor: pointer;
 `;

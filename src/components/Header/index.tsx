@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import AuthModal from "components/AuthModal";
+import { userUsers } from "hooks";
+import { logoutSession } from "utils/session";
 
 import {
   AuthButton,
@@ -13,6 +15,7 @@ import {
 
 const Header: React.FC = () => {
   const [openAuthModal, setOpenAuthModal] = useState(false);
+  const { isAuthenticated } = userUsers();
 
   return (
     <HeaderWrapper>
@@ -23,7 +26,14 @@ const Header: React.FC = () => {
         </InputLogoContainer>
         <HeaderInput />
       </HeaderInputContainer>
-      <AuthButton onClick={() => setOpenAuthModal(true)}>Entrar</AuthButton>
+      {isAuthenticated ? (
+        <AuthButton onClick={() => logoutSession()}>Logout</AuthButton>
+      ) : (
+        <AuthButton onClick={() => setOpenAuthModal(true)}>
+          Login / Register
+        </AuthButton>
+      )}
+
       {openAuthModal && <AuthModal openModal={setOpenAuthModal} />}
     </HeaderWrapper>
   );

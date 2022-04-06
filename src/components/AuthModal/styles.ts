@@ -61,3 +61,9 @@ export const AuthButton = styled.button`
   font-weight: bold;
   cursor: pointer;
 `;
+
+export const Errormessage = styled.p`
+  color: red;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+`;

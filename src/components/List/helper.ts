@@ -1,5 +1,5 @@
 import { itemsService } from "services";
-import { setCurrentList } from "../../Store/list/actions";
+import { setCurrentList } from "../../store/list/actions";
 
 export const getListItems = async (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
