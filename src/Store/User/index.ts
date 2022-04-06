@@ -1,5 +1,6 @@
 import IAccount from "interfaces/IAccount";
 import { Store } from "pullstate";
+import { getFromStorage } from "utils/storage";
 
 interface IProps {
   accounts: IAccount[];
@@ -8,9 +9,9 @@ interface IProps {
 }
 
 export const UserStore = new Store<IProps>({
-  accounts: [],
-  isAuthenticated: false,
-  currentUser: {
+  accounts: getFromStorage("@session").accounts || [],
+  isAuthenticated: getFromStorage("@session").isAuthenticated || false,
+  currentUser: getFromStorage("@session").currentUser || {
     email: "",
     password: "",
     name: "",

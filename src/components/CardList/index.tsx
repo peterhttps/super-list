@@ -1,5 +1,6 @@
 import React from "react";
 import IItem from "interfaces/IItem";
+import { userUsers } from "hooks";
 
 import { CardImage, CardTitle, CardWrapper, FavoriteButton } from "./styles";
 
@@ -8,11 +9,15 @@ interface IProps {
 }
 
 const CardList: React.FC<IProps> = ({ item }: IProps) => {
+  const { isAuthenticated } = userUsers();
+
   return (
     <CardWrapper>
       <CardImage src={item.image} alt={item.name} />
       <CardTitle>{item.name}</CardTitle>
-      <FavoriteButton>Adicionar aos favoritos</FavoriteButton>
+      {isAuthenticated && (
+        <FavoriteButton>Adicionar aos favoritos</FavoriteButton>
+      )}
     </CardWrapper>
   );
 };

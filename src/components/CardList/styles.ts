@@ -31,6 +31,7 @@ export const FavoriteButton = styled.button`
   cursor: pointer;
   transition: 0.5s;
   border-radius: 0 0 5px 5px;
+  height: auto;
 
   &:hover {
     background: #1e4c7d;
