@@ -16,7 +16,7 @@ const FullList: React.FC = () => {
         <CategorieContainer>Clothes</CategorieContainer>
         <CategorieContainer>Foods</CategorieContainer>
       </CategoriesContainer>
-      <List />
+      <List isFavorites={false} />
     </FullListWrapper>
   );
 };
