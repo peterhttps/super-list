@@ -39,7 +39,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper data-testid="header-wrapper">
       <TitleLogo>Super List</TitleLogo>
       <HeaderInputContainer>
         <HeaderInput
@@ -47,6 +47,7 @@ const Header: React.FC = () => {
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Search"
           defaultValue={searchInput}
+          data-testid="header-input"
         />
         <InputLogoContainer>
           <FaSearch size={18} color="white" />

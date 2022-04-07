@@ -46,7 +46,7 @@ const List: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
 
   if (isFavorites) {
     return (
-      <ListWrapper>
+      <ListWrapper data-testid="list-favorites-wrapper">
         <ListContainer>
           {favoritesSource?.map((item) => (
             <CardList key={item.id} item={item} />
@@ -57,7 +57,7 @@ const List: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
   }
 
   return (
-    <ListWrapper>
+    <ListWrapper data-testid="list-wrapper">
       <ListContainer>
         {listSource.map((item) => (
           <CardList key={item.id} item={item} />

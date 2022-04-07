@@ -21,7 +21,7 @@ const FullList: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
   const location = useLocation();
 
   return (
-    <FullListWrapper>
+    <FullListWrapper data-testid="fullList-wrapper">
       <CategoriesContainer>
         {isAuthenticated && (
           <>
