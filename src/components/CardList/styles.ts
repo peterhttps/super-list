@@ -11,7 +11,7 @@ export const CardWrapper = styled.div`
 `;
 
 export const CardTitle = styled.h1`
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 export const CardImage = styled.img`

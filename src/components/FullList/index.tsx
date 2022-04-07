@@ -11,10 +11,10 @@ import {
 } from "./styles";
 
 interface IProps {
-  isFavorites: boolean;
+  isFavorites?: boolean;
 }
 
-const FullList: React.FC<IProps> = ({ isFavorites }: IProps) => {
+const FullList: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
   const { isAuthenticated, currentUser } = userUsers();
   const navigate = useNavigate();
   const location = useLocation();

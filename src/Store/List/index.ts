@@ -1,5 +1,6 @@
 import IItem from "interfaces/IItem";
 import { Store } from "pullstate";
+import { getFromStorageArray, getFromStorageValue } from "utils/storage";
 
 interface IProps {
   currentList: IItem[];
@@ -7,6 +8,6 @@ interface IProps {
 }
 
 export const ListStore = new Store<IProps>({
-  currentList: [],
-  currentPagination: 0,
+  currentList: getFromStorageArray("@currentList"),
+  currentPagination: getFromStorageValue("@pagination"),
 });

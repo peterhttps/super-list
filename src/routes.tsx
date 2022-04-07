@@ -8,7 +8,10 @@ const src: React.FC = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<FullList isFavorites={false} />} />
+        <Route path="/" element={<FullList />} />
+        <Route path="/cars" element={<FullList />} />
+        <Route path="/foods" element={<FullList />} />
+        <Route path="/clothes" element={<FullList />} />
         <Route path="/favorites" element={<FullList isFavorites />} />
       </Routes>
     </BrowserRouter>
