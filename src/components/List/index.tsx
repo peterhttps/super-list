@@ -37,6 +37,13 @@ const List: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
     );
   }, [location.pathname, currentList]);
 
+  useEffect(() => {
+    setFavoritesSource(
+      favorites.find((favorite) => favorite.userEmail === currentUser.email)
+        ?.favorites
+    );
+  }, [favorites]);
+
   if (isFavorites) {
     return (
       <ListWrapper>

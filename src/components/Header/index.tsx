@@ -53,7 +53,14 @@ const Header: React.FC = () => {
         </InputLogoContainer>
       </HeaderInputContainer>
       {isAuthenticated ? (
-        <AuthButton onClick={() => logoutSession()}>Logout</AuthButton>
+        <AuthButton
+          onClick={() => {
+            logoutSession();
+            navigate("/");
+          }}
+        >
+          Logout
+        </AuthButton>
       ) : (
         <AuthButton onClick={() => setOpenAuthModal(true)}>
           Login / Register

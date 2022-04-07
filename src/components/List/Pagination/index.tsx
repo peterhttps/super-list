@@ -1,6 +1,7 @@
 import { useList } from "hooks";
 import IItem from "interfaces/IItem";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { addPagination, removePagination } from "store/list/actions";
 import { reorganizeItems } from "../helper";
 import { PaginationButton, PaginationCotainer } from "../styles";
@@ -19,8 +20,9 @@ const Pagination: React.FC<IProps> = ({
   setListSource,
 }: IProps) => {
   const { currentList } = useList();
+  const location = useLocation();
 
-  if (listSource.length > 9) {
+  if (listSource.length > 9 && !location.pathname.startsWith("/search")) {
     return (
       <PaginationCotainer>
         <PaginationButton

@@ -1,10 +1,5 @@
 import { userUsers } from "hooks";
 import React, { useState } from "react";
-import {
-  addUser,
-  setCurrentUser,
-  setIsAuthenticated,
-} from "store/user/actions";
 import { registerSession } from "utils/session";
 import { AuthButton, Errormessage, LoginInput } from "../styles";
 import { RegisterWrapper } from "./styles";
@@ -19,6 +14,11 @@ const RegisterSection: React.FC = () => {
 
   const register = () => {
     const authExists = accounts.find((account) => account.email === email);
+
+    if (email === "" || name === "" || password === "") {
+      setErrorMessage("One or more blank fields");
+      return;
+    }
 
     if (authExists) {
       setErrorMessage("Account already exists");
