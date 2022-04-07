@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+<h1 align="center">Stock Market</h1>
+<h4 align="center">
+  Quer visualizar multiplas APIs de um jeito simples?
+</h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+	<a href="#white_check_mark-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-como-iniciar">Como iniciar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-testes">Testes</a>
+</p>
 
-## Available Scripts
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/20236175/162229629-a59b5f24-1180-4190-b269-d994f38b7047.png)
 
-### `npm start`
+<p align="center">
+  <a href="https://super-list.vercel.app/">Testar aplicação</a>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## :white_check_mark: Features
+Dentre as features temos:
+- Adicionar items aos favoritos (persistem localmente mesmo após sair da aplicação)
+- Listar multiplos items de APIs diferentes
+- Criar contas e acessar favoritos para tal conta
+- Pesquisa por nome
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :rocket: Tecnologias 
 
-### `npm test`
+Este projeto foi desenvolvido com React.js e utiliza styled-components para estilização, além da Context API e 
+Local Storage para armazenamento local de informações.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS](https://reactjs.org/)
+- [Pullstate](https://github.com/lostpebble/pullstate)
+- [Hooks](https://reactjs.org/docs/hooks-reference.html)
+- [styled-components](https://styled-components.com/)
 
-### `npm run build`
+## :information_source: Como iniciar
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Clone este repositório
+$ git clone https://github.com/peterhttps/super-list
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Entre na pasta
+$ cd super-list
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Instale as dependências
+$ yarn install
 
-### `npm run eject`
+# Suba a aplicação
+$ yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## :memo: Testes
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Testes unitários de componentes com a criação de Mock.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<p>Para rodar os testes automatizados</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+# Rodar testes
+$ yarn test
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+:triangular_flag_on_post: [Get in touch!](https://www.linkedin.com/in/peterparts/)
