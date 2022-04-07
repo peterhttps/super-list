@@ -2,15 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import IItem from "interfaces/IItem";
 
 const getClothes = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get(process.env.URL_1 || "");
+  return axios.get("https://super-api-clothes.herokuapp.com/items");
 };
 
 const getCars = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get(process.env.ULR_2 || "");
+  return axios.get("https://super-api-cars.herokuapp.com/items");
 };
 
 const getFoods = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get(process.env.ULR_3 || "");
+  return axios.get("https://super-api-foods.herokuapp.com/items");
 };
 
 const getAllItems = () => {
