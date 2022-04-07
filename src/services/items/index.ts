@@ -2,15 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import IItem from "interfaces/IItem";
 
 const getClothes = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get("http://localhost:3333/items");
+  return axios.get(process.env.URL_1 || "");
 };
 
 const getCars = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get("http://localhost:3334/items");
+  return axios.get(process.env.ULR_2 || "");
 };
 
 const getFoods = (): Promise<AxiosResponse<IItem[]>> => {
-  return axios.get("http://localhost:3335/items");
+  return axios.get(process.env.ULR_3 || "");
 };
 
 const getAllItems = () => {
