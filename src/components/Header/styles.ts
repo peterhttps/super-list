@@ -28,7 +28,8 @@ export const InputLogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 48px;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
 `;
 
 export const HeaderInput = styled.input`
@@ -37,8 +38,13 @@ export const HeaderInput = styled.input`
   height: 32px;
   background: #3182ce;
   border: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px 0px 0px 10px;
   color: white;
+
+  &::placeholder {
+    color: white;
+    opacity: 1;
+  }
 `;
 
 export const AuthButton = styled.button`

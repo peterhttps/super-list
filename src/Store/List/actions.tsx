@@ -25,3 +25,9 @@ export const setCurrentList = (value: IItem[]) =>
     s.currentList = value;
     saveOnStorage("@currentList", s.currentList);
   });
+
+export const setCurrentSearch = (value: string) =>
+  ListStore.update((s) => {
+    s.currentSearch = value;
+    saveOnStorage("@currentSearch", s.currentSearch);
+  });

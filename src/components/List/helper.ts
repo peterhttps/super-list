@@ -1,7 +1,8 @@
 import RouterContants from "constants/routerContants";
 import IItem from "interfaces/IItem";
+import { Location } from "react-router-dom";
 import { itemsService } from "services";
-import { setCurrentList } from "../../store/list/actions";
+import { setCurrentList, setCurrentPagination } from "../../store/list/actions";
 
 export const reorganizeItems = (
   currentList: IItem[],
@@ -19,26 +20,32 @@ export const reorganizeItems = (
 };
 
 export const getListItems = async (
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   currentPagination: number,
-  setListSource: React.Dispatch<React.SetStateAction<IItem[]>>
+  setListSource: React.Dispatch<React.SetStateAction<IItem[]>>,
+  id: string | undefined
 ) => {
   const items = await itemsService.getAllItems();
-  const finalItems = [...items[0].data, ...items[1].data, ...items[2].data];
+  let finalItems = [...items[0].data, ...items[1].data, ...items[2].data];
   finalItems.sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
+
+  if (id) {
+    finalItems = finalItems.filter((item) =>
+      item.name.toLowerCase().startsWith(id.toLowerCase())
+    );
+  }
+
   setCurrentList(finalItems);
   reorganizeItems(finalItems, currentPagination, setListSource);
-  setIsLoading(false);
   localStorage.setItem("@actualPath", RouterContants.ALL);
 };
 
 export const getSpecificItems = async (
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   currentPagination: number,
   setListSource: React.Dispatch<React.SetStateAction<IItem[]>>,
-  route: string
+  route: string,
+  id: string | undefined
 ) => {
   let items: IItem[] = [];
 
@@ -56,10 +63,79 @@ export const getSpecificItems = async (
     localStorage.setItem("@actualPath", RouterContants.FOODS);
   }
 
-  const finalItems = items.sort((a, b) => {
+  let finalItems = items.sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
+
+  if (id) {
+    finalItems = finalItems.filter((item) =>
+      item.name.toLowerCase().startsWith(id.toLowerCase())
+    );
+  }
+
   setCurrentList(finalItems);
   reorganizeItems(finalItems, currentPagination, setListSource);
-  setIsLoading(false);
+};
+
+export const getSourceType = (
+  currentPagination: number,
+  location: Location,
+  setListSource: React.Dispatch<React.SetStateAction<IItem[]>>,
+  id: string | undefined,
+  isFavorites: boolean,
+  currentList: IItem[],
+  favoritesSource: IItem[] | undefined,
+  setFavoritesSource: React.Dispatch<React.SetStateAction<IItem[] | undefined>>
+) => {
+  let paginationNumber = currentPagination;
+  if (location.pathname !== localStorage.getItem("@actualPath")) {
+    paginationNumber = 0;
+    setCurrentPagination(0);
+  }
+  switch (location.pathname) {
+    case RouterContants.FAVORITES:
+      break;
+    case RouterContants.ALL:
+      getListItems(paginationNumber, setListSource, id);
+      break;
+    case RouterContants.CARS:
+      getSpecificItems(
+        paginationNumber,
+        setListSource,
+        RouterContants.CARS,
+        id
+      );
+      break;
+    case RouterContants.CLOTHES:
+      getSpecificItems(
+        paginationNumber,
+        setListSource,
+        RouterContants.CLOTHES,
+        id
+      );
+      break;
+    case RouterContants.FOODS:
+      getSpecificItems(
+        paginationNumber,
+        setListSource,
+        RouterContants.FOODS,
+        id
+      );
+      break;
+    default:
+      if (isFavorites) {
+        if (id) {
+          const favoritesFiltered = favoritesSource?.filter((item) =>
+            item.name.toLowerCase().startsWith(id.toLowerCase())
+          );
+          setFavoritesSource(favoritesFiltered);
+        }
+      } else if (id) {
+        const finalItems = currentList.filter((item) =>
+          item.name.toLowerCase().startsWith(id.toLowerCase())
+        );
+        reorganizeItems(finalItems, paginationNumber, setListSource);
+      }
+      break;
+  }
 };

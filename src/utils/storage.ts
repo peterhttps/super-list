@@ -6,6 +6,10 @@ export const getFromStorage = (key: string) => {
   return JSON.parse(localStorage.getItem(key) || "{}");
 };
 
+export const getRawFromStorage = (key: string) => {
+  return localStorage.getItem(key) || "";
+};
+
 export const getFromStorageArray = (key: string) => {
   return JSON.parse(localStorage.getItem(key) || "[]");
 };

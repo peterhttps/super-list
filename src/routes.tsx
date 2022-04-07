@@ -12,6 +12,11 @@ const src: React.FC = () => {
         <Route path="/cars" element={<FullList />} />
         <Route path="/foods" element={<FullList />} />
         <Route path="/clothes" element={<FullList />} />
+        <Route path="/search/:id" element={<FullList />} />
+        <Route
+          path="/search/favorites/:id"
+          element={<FullList isFavorites />}
+        />
         <Route path="/favorites" element={<FullList isFavorites />} />
       </Routes>
     </BrowserRouter>

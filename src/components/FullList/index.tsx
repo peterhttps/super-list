@@ -3,6 +3,7 @@ import { userUsers } from "hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import List from "components/List";
 import RouterContants from "constants/routerContants";
+import { getRawFromStorage } from "../../utils/storage";
 
 import {
   CategorieContainer,
@@ -26,8 +27,14 @@ const FullList: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
           <>
             <h1>Hello, {currentUser.name.split(" ")[0]}</h1>
             <CategorieContainer
-              onClick={() => navigate(RouterContants.FAVORITES)}
-              active={location.pathname === RouterContants.FAVORITES}
+              onClick={() => {
+                localStorage.setItem("@actualPath", RouterContants.FAVORITES);
+                navigate(RouterContants.FAVORITES);
+              }}
+              active={[
+                location.pathname,
+                getRawFromStorage("@actualPath"),
+              ].includes(RouterContants.FAVORITES)}
             >
               Favorites
             </CategorieContainer>
@@ -35,26 +42,50 @@ const FullList: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
         )}
         <h1>Categories</h1>
         <CategorieContainer
-          onClick={() => navigate(RouterContants.ALL)}
-          active={location.pathname === RouterContants.ALL}
+          onClick={() => {
+            navigate(RouterContants.ALL);
+            localStorage.removeItem("@actualPath");
+          }}
+          active={[
+            location.pathname,
+            getRawFromStorage("@actualPath"),
+          ].includes(RouterContants.ALL)}
         >
           All
         </CategorieContainer>
         <CategorieContainer
-          onClick={() => navigate(RouterContants.CARS)}
-          active={location.pathname === RouterContants.CARS}
+          onClick={() => {
+            navigate(RouterContants.CARS);
+            localStorage.removeItem("@actualPath");
+          }}
+          active={[
+            location.pathname,
+            getRawFromStorage("@actualPath"),
+          ].includes(RouterContants.CARS)}
         >
           Cars
         </CategorieContainer>
         <CategorieContainer
-          onClick={() => navigate(RouterContants.CLOTHES)}
-          active={location.pathname === RouterContants.CLOTHES}
+          onClick={() => {
+            navigate(RouterContants.CLOTHES);
+            localStorage.removeItem("@actualPath");
+          }}
+          active={[
+            location.pathname,
+            getRawFromStorage("@actualPath"),
+          ].includes(RouterContants.CLOTHES)}
         >
           Clothes
         </CategorieContainer>
         <CategorieContainer
-          onClick={() => navigate(RouterContants.FOODS)}
-          active={location.pathname === RouterContants.FOODS}
+          onClick={() => {
+            navigate(RouterContants.FOODS);
+            localStorage.removeItem("@actualPath");
+          }}
+          active={[
+            location.pathname,
+            getRawFromStorage("@actualPath"),
+          ].includes(RouterContants.FOODS)}
         >
           Foods
         </CategorieContainer>

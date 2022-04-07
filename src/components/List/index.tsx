@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useFavorites, useList, userUsers } from "hooks";
-import { useLocation } from "react-router-dom";
-import {
-  addPagination,
-  removePagination,
-  setCurrentPagination,
-} from "store/list/actions";
+import { useLocation, useParams } from "react-router-dom";
 import IItem from "interfaces/IItem";
 import CardList from "../CardList";
-import RouterContants from "../../constants/routerContants";
+import Pagination from "./Pagination";
+import { getSourceType } from "./helper";
 
-import {
-  ListContainer,
-  ListWrapper,
-  PaginationButton,
-  PaginationCotainer,
-} from "./styles";
-import { getListItems, getSpecificItems, reorganizeItems } from "./helper";
+import { ListContainer, ListWrapper } from "./styles";
 
 interface IProps {
   isFavorites: boolean;
@@ -24,104 +14,40 @@ interface IProps {
 
 const List: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
   const { currentList, currentPagination } = useList();
+  const { id } = useParams();
   const { favorites } = useFavorites();
   const { currentUser } = userUsers();
   const location = useLocation();
   const [listSource, setListSource] = useState<IItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [favoritesSource, setFavoritesSource] = useState<IItem[] | undefined>(
+    favorites.find((favorite) => favorite.userEmail === currentUser.email)
+      ?.favorites
+  );
 
   useEffect(() => {
-    setIsLoading(true);
-    let paginationNumber = currentPagination;
-    if (location.pathname !== localStorage.getItem("@actualPath")) {
-      paginationNumber = 0;
-      setCurrentPagination(0);
-    }
-    switch (location.pathname) {
-      case RouterContants.ALL:
-        getListItems(setIsLoading, paginationNumber, setListSource);
-        break;
-      case RouterContants.CARS:
-        getSpecificItems(
-          setIsLoading,
-          paginationNumber,
-          setListSource,
-          RouterContants.CARS
-        );
-        break;
-      case RouterContants.CLOTHES:
-        getSpecificItems(
-          setIsLoading,
-          paginationNumber,
-          setListSource,
-          RouterContants.CLOTHES
-        );
-        break;
-      case RouterContants.FOODS:
-        getSpecificItems(
-          setIsLoading,
-          paginationNumber,
-          setListSource,
-          RouterContants.FOODS
-        );
-        break;
-      default:
-        getListItems(setIsLoading, paginationNumber, setListSource);
-    }
-  }, [location.pathname]);
-
-  const renderPagination = () => {
-    if (currentList.length > 9) {
-      return (
-        <PaginationCotainer>
-          <PaginationButton
-            onClick={() => {
-              removePagination();
-              reorganizeItems(
-                currentList,
-                currentPagination - 1,
-                setListSource
-              );
-            }}
-            visible={currentPagination !== 0}
-          >
-            Previous
-          </PaginationButton>
-          <PaginationButton
-            onClick={() => {
-              addPagination();
-              reorganizeItems(
-                currentList,
-                currentPagination + 1,
-                setListSource
-              );
-            }}
-            visible
-          >
-            Next
-          </PaginationButton>
-        </PaginationCotainer>
-      );
-    }
-
-    return <div />;
-  };
+    getSourceType(
+      currentPagination,
+      location,
+      setListSource,
+      id,
+      isFavorites,
+      currentList,
+      favoritesSource,
+      setFavoritesSource
+    );
+  }, [location.pathname, currentList]);
 
   if (isFavorites) {
     return (
       <ListWrapper>
         <ListContainer>
-          {favorites
-            .find((favorite) => favorite.userEmail === currentUser.email)
-            ?.favorites.map((item) => (
-              <CardList key={item.id} item={item} />
-            ))}
+          {favoritesSource?.map((item) => (
+            <CardList key={item.id} item={item} />
+          ))}
         </ListContainer>
       </ListWrapper>
     );
   }
-
-  if (isLoading) return <div />;
 
   return (
     <ListWrapper>
@@ -130,7 +56,11 @@ const List: React.FC<IProps> = ({ isFavorites = false }: IProps) => {
           <CardList key={item.id} item={item} />
         ))}
       </ListContainer>
-      {renderPagination()}
+      <Pagination
+        listSource={currentList}
+        currentPagination={currentPagination}
+        setListSource={setListSource}
+      />
     </ListWrapper>
   );
 };
