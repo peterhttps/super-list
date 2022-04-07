@@ -29,7 +29,7 @@ const RegisterSection: React.FC = () => {
   };
 
   return (
-    <RegisterWrapper>
+    <RegisterWrapper data-testid="register-section-wrapper">
       <LoginInput
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}

@@ -23,7 +23,10 @@ const AuthModal: React.FC<IProps> = ({ openModal }: IProps) => {
   }, [isAuthenticated]);
 
   return (
-    <ModalWrapper onClick={() => openModal(false)}>
+    <ModalWrapper
+      onClick={() => openModal(false)}
+      data-testid="authModal-wrapper"
+    >
       <ModalContainer onClick={(e) => e.stopPropagation()}>
         <OptionsContainer>
           <ChooseOption active={isLogin} onClick={() => setIsLogin(true)}>

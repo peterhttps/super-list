@@ -56,7 +56,7 @@ const CardList: React.FC<IProps> = ({ item }: IProps) => {
   };
 
   return (
-    <CardWrapper>
+    <CardWrapper data-testid="card-wrapper">
       <CardImage src={item.image} alt={item.name} />
       <CardTitle>{item.name}</CardTitle>
       {renderFavoriteSection()}
