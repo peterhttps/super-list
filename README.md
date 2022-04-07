@@ -1,4 +1,4 @@
-<h1 align="center">Stock Market</h1>
+<h1 align="center">Super List</h1>
 <h4 align="center">
   Quer visualizar multiplas APIs de um jeito simples?
 </h4>
